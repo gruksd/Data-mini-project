@@ -1,7 +1,7 @@
-## Data-mini-project
+# Data-mini-project
 # MINI PROJECT CANVAS                 
-# Title (preliminary):                                                             # Group members: Mikhail Zolotilin, Mitja Sainio, Sofia Gruk                                                      
-Workshop # :         .     
+## Title (preliminary):                                                             ## Group members: Mikhail Zolotilin, Mitja Sainio, Sofia Gruk                                                      
+Workshop:         .     
          MOTIVATION  🎯
 Which is the target group of our mini-project? Who is the end-user?
 
