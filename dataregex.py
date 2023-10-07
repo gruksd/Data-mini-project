@@ -18,7 +18,7 @@ sentences = [
     "Jussi Halla-Aho puolestaan suhtautuu Tiktokiin kriittisesti.– En ole kokenut tarpeelliseksi luoda profiilia Tiktokiin.",
     "Suhtaudun koko alustaan hiukan skeptisesti turvallisuuspoliittisten ulottuvuuksien takia.",
     "Muut ehdokkaat voivat itse arvioida, onko järkevää käyttää Tiktokin kaltaista alustaa.",
-    "Mika Aaltola kertoi 8 minuuttia -ohjelmassaan presidentinvaalikampanjastaan.",
+    "Aaltola kertoi 8 minuuttia -ohjelmassaan presidentinvaalikampanjastaan.",
     "Hjallis Harkimo kertoi 8 minuuttia -ohjelmassa omasta kampanjastaan.",
     "Voit keskustella aiheesta 31.8. klo 23 asti. #Kristillisdemokraatit ovat nimittäneet puolueensa presidenttiehdokkaaksi puolueen puheenjohtajan Sari Essayahin.",
     "Päätös oli odotettu. Kristillisdemokraattien puoluehallitus päätti jo viime torstaina esittää, että oma presidenttiehdokas nimitetään ja että tämä on Essayah.",
