@@ -16,6 +16,5 @@ for date, text in dates_textes:
     dataset.append((date, sentences))
 
 
-    
 print(dataset[0])
 
