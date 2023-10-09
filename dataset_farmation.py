@@ -71,7 +71,7 @@ def extract_month_and_sentence_count(data):
 
 #print(output)
 
-#print(name_data["Pekka Haavisto"])
+print(name_data["Alexander Stubb"])
 import seaborn as sns
 import matplotlib.pyplot as plt
 from datetime import datetime
