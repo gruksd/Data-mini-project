@@ -72,6 +72,10 @@ def extract_month_and_sentence_count(data):
 #print(output)
 
 #print(name_data["Pekka Haavisto"])
+import seaborn as sns
+import matplotlib.pyplot as plt
+from datetime import datetime
+
 name_list = [
     "Pekka Haavisto",
     "Alexander Stubb",
@@ -83,18 +87,14 @@ name_list = [
     "Sari Essayah",
     "Harry Harkimo",
 ]
+
 plotting_data = {}
 for name in name_list:
     input_data = name_data[name]
-
     output = extract_month_and_sentence_count(input_data)
     plotting_data[name] = output
 
-#print(plotting_data)
-
-import matplotlib.pyplot as plt
-from datetime import datetime
-
+# Color palette
 color_palette = {
     'Pekka Haavisto': 'greenyellow',
     'Alexander Stubb': 'darkblue',
@@ -104,57 +104,81 @@ color_palette = {
     'Li Andersson': 'indianred',
     'Jutta Urpilainen': 'lightcoral',
     'Sari Essayah': 'blueviolet',
-    'Harry Harkimo': 'hotpink'
+    'Harry Harkimo': 'hotpink',
 }
 
-fig, ax = plt.subplots()
+# Create a Seaborn figure
+plt.figure(figsize=(12, 6))
+sns.set_style("whitegrid")
 
 for name, mentions in plotting_data.items():
     x = [datetime(year, month, 1) for year, month in mentions.keys()]  
     y = list(mentions.values())  
-    color = color_palette.get(name, 'gray') 
-    ax.plot(x, y, label=name, color=color)
+    color = color_palette.get(name, 'gray')
+    sns.lineplot(x=x, y=y, label=name, color=color)
 
-
-ax.set_xlabel('Time')
-ax.set_ylabel('Number of Mentions')
-ax.set_title('Media Mentions Over Time')
-ax.legend(loc='upper right')
-
-
-date_format = plt.matplotlib.dates.DateFormatter('%b, %Y')
-ax.xaxis.set_major_formatter(date_format)
-
-
+plt.xlabel('Time')
+plt.ylabel('Number of Mentions')
+plt.title('Media Mentions Over Time')
 plt.xticks(rotation=45)
 
+# Customize legend placement
+plt.legend(loc='upper right')
 
-plt.grid(True)
+# Format x-axis dates
+date_format = plt.matplotlib.dates.DateFormatter('%b, %Y')
+plt.gca().xaxis.set_major_formatter(date_format)
+
 plt.tight_layout()
 plt.show()
 
+import plotly.express as px
+import pandas as pd
 
-import seaborn as sns
+name_list = [
+    "Pekka Haavisto",
+    "Alexander Stubb",
+    "Olli Rehn",
+    "Mika Aaltola",
+    "Jussi Halla-aho",
+    "Li Andersson",
+    "Jutta Urpilainen",
+    "Sari Essayah",
+    "Harry Harkimo",
+]
 
-# Your data and color palette definitions remain the same
+plotting_data = {}
+for name in name_list:
+    input_data = name_data[name]
+    output = extract_month_and_sentence_count(input_data)
+    plotting_data[name] = output
 
-fig, ax = plt.subplots(figsize=(10, 6))  # Set the figure size
+# Create a DataFrame from the plotting data
+df = pd.DataFrame({
+    'Name': [name for name in plotting_data.keys() for _ in plotting_data[name]],
+    'Date': [datetime(year, month, 1) for name in plotting_data.keys() for year, month in plotting_data[name].keys()],
+    'Mentions': [count for name in plotting_data.keys() for count in plotting_data[name].values()],
+})
 
-for name, mentions in plotting_data.items():
-    x = [datetime(year, month, 1) for year, month in mentions.keys()]  
-    y = list(mentions.values())  
-    color = color_palette.get(name, 'gray') 
-    sns.lineplot(x=x, y=y, label=name, color=color)  # Use Seaborn's lineplot function
+# Map names to colors using the color_palette dictionary
+df['Color'] = df['Name'].map(color_palette)
 
-ax.set_xlabel('Time')
-ax.set_ylabel('Number of Mentions')
-ax.set_title('Media Mentions Over Time')
-ax.legend(loc='upper right')
+# Create the Plotly figure
+fig = px.line(
+    df,
+    x='Date',
+    y='Mentions',
+    color='Name',
+    color_discrete_map=color_palette,  # Use the defined color palette
+    labels={'Mentions': 'Number of Mentions'},
+    title='Media Mentions Over Time',
+)
 
-date_format = plt.matplotlib.dates.DateFormatter('%b, %Y')
-ax.xaxis.set_major_formatter(date_format)
-plt.xticks(rotation=45)
+# Customize the x-axis date format
+fig.update_xaxes(
+    tickformat='%b, %Y',
+    tickangle=45,
+)
 
-plt.grid(True)
-plt.tight_layout()
-plt.show()
+# Show the interactive plot
+fig.show()
