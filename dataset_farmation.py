@@ -117,8 +117,7 @@ for name, mentions in plotting_data.items():
     color = color_palette.get(name, 'gray')
     sns.lineplot(x=x, y=y, label=name, color=color)
 
-plt.xlabel('Time')
-plt.ylabel('Number of Mentions')
+
 plt.title('Media Mentions Over Time')
 plt.xticks(rotation=45)
 
@@ -170,7 +169,7 @@ fig = px.line(
     y='Mentions',
     color='Name',
     color_discrete_map=color_palette,  # Use the defined color palette
-    labels={'Mentions': 'Number of Mentions'},
+    labels={'Date': '', 'Mentions': ''},  # Empty labels for x and y axes
     title='Media Mentions Over Time',
 )
 
@@ -180,5 +179,9 @@ fig.update_xaxes(
     tickangle=45,
 )
 
+# Remove legend
+fig.update_layout(legend_title_text='')
+
 # Show the interactive plot
 fig.show()
+
