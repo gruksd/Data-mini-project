@@ -1,4 +1,4 @@
 # Mini-project for Introduction to Data Science course
-# INVESTIGATING THE RELATIONSHIP BETWEEN PRESIDENTIAL CANDIDATE MEDIA COVERAGE AND ELECTORAL SUCCESS
-## Group members: Sofia Gruk, Mitja Sainio Mikhail Zolotilin
+# Investigating the relationship between presidential candidate media coverage and electoral success
+## Group members: Sofia Gruk, Mitja Sainio and Mikhail Zolotilin
 
