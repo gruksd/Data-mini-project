@@ -82,6 +82,9 @@ for name in name_list:
     plotting_data[name] = output
 
 import numpy
+import matplotlib
+import matplotlib.pyplot as plt
+from scipy import stats
 
 mention_scores = {name: sum(plotting_data[name].values()) for name in plotting_data}
 sentiment_scores = {"Pekka Haavisto": 0.8293, "Alexander Stubb": 0.7619, "Olli Rehn": 0.8217,
@@ -105,11 +108,6 @@ print()
 print("mention frequencies\t", r1[0][1])
 print("sentiment analysis\t", r2[0][1])
 print("combined\t\t", r3[0][1])
-
-import seaborn as sns
-import matplotlib
-import matplotlib.pyplot as plt
-from scipy import stats
 
 slope, intercept, r, p, std_err = stats.linregress(combined_scores, poll_values)
 
