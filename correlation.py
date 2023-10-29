@@ -94,8 +94,8 @@ poll_scores = {"Pekka Haavisto": 0.29, "Alexander Stubb": 0.22, "Olli Rehn": 0.1
                "Jutta Urpilainen": 0.03, "Sari Essayah": 0.02, "Harry Harkimo": 0.02}
 
 mention_values = [x for x in mention_scores.values()]
-sentiment_values = [x for x in sentiment_scores.values()]
-poll_values = [x for x in poll_scores.values()]
+sentiment_values = [x*100 for x in sentiment_scores.values()]
+poll_values = [x*100 for x in poll_scores.values()]
 
 r1 = numpy.corrcoef(mention_values, poll_values)
 r2 = numpy.corrcoef(sentiment_values, poll_values)
@@ -105,3 +105,21 @@ print()
 print("mention frequencies\t", r1[0][1])
 print("sentiment analysis\t", r2[0][1])
 print("combined\t\t", r3[0][1])
+
+import seaborn as sns
+import matplotlib
+import matplotlib.pyplot as plt
+from scipy import stats
+
+slope, intercept, r, p, std_err = stats.linregress(combined_scores, poll_values)
+
+def myfunc(x):
+  return slope * x + intercept
+
+mymodel = list(map(myfunc, combined_scores))
+
+plt.scatter(combined_scores, poll_values)
+plt.plot(combined_scores, mymodel)
+plt.xlabel("Candidate score")
+plt.ylabel("Popularity in poll %")
+plt.show()
